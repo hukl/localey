@@ -5,11 +5,12 @@ class Localey
   end
   
   def call env
-    locale      = nil
-    locale      = env['PATH_INFO'].match(/^\/([a-zA-Z-]{2,2})/)[1]
-    I18n.locale = locale
+    locale = env['PATH_INFO'].match(/^\/([\w-]+)\//)[1] rescue nil
     
-    env['PATH_INFO'].sub!(/\/[a-zA-Z]{2,2}\//, "/")
+    if locale and I18n::Locale::Tag::Rfc4646.tag( locale )
+      I18n.locale = locale
+      env['PATH_INFO'].sub!(/^\/([\w-]+)\//, "/")
+    end
     
     status, headers, response = @app.call(env)
     [status, headers, response]
