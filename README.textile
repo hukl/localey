@@ -1,6 +1,6 @@
 h1. What is it for
 
-This plugin should enable your Rails 3 apps to encode the locale within the url like: http://example.com/de/posts/1 without the usual quirks. Your app and all helpers etc should behave normally.
+This plugin should enable your Rails 3 apps to encode the locale within the url like: http://example.com/*en*/posts/1 without the usual quirks. Your app and all helpers etc should behave normally.
 
 In earlier versions of rails you had to user things like svenfuchs/routing-filter plugin or pass :id or :locale parameters each time.
 
@@ -19,6 +19,6 @@ according to I18n.available_locales I18n.locale is set accordingly.
 
 # ActionDispatch::Routing::RouteSet#generate is wrapped via alias_method to add
 the locale to every output of the original generate method.
-posts_path produces /en/posts instead of /posts
+posts_path produces /*en*/posts instead of /posts
 
 Copyright (c) 2010 hukl, released under the MIT license
