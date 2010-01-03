@@ -1,5 +1,3 @@
-require 'ruby-debug'
-
 class Localey
   
   def initialize app
