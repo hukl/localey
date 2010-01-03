@@ -1,8 +1,6 @@
 require 'test_helper'
-require 'localey'
-require 'i18n'
 
-class LocaleyTest < Test::Unit::TestCase
+class LocaleyTest < ActiveSupport::TestCase
   
   def setup
     @app = Localey.new Object.new
@@ -11,25 +9,25 @@ class LocaleyTest < Test::Unit::TestCase
     I18n.available_locales = [:de, :en, :"en-US", :fr]
   end
   
-  def test_filtering_a_basic_url_with_a_simple_locale
+  test "filtering a basic url with a simple locale" do
     set_path_info_and_filter( "/de/foo/bar" )
     assert_equal "/foo/bar", @env['PATH_INFO']
     assert_equal :de, I18n.locale
   end
   
-  def test_filtering_a_basic_url_with_an_extended_locale
+  test "filtering a basic url with an extended locale" do
     set_path_info_and_filter( "/en-US/foo/bar" )
     assert_equal "/foo/bar", @env['PATH_INFO']
     assert_equal :"en-US", I18n.locale
   end
   
-  def test_urls_without_locale
+  test "urls without a locale should be ignored" do
     set_path_info_and_filter( "/foo/bar" )
     assert_equal "/foo/bar", @env['PATH_INFO']
     assert_equal :en, I18n.locale
   end
   
-  def test_root_url
+  test "filtering root path should do nothing" do
     set_path_info_and_filter( "/" )
     assert_equal "/", @env['PATH_INFO']
     assert_equal :en, I18n.locale
