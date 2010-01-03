@@ -1,7 +1,9 @@
 class Localey
   
   def initialize app
-    @app = app
+    @app      = app
+    @locales  = I18n.available_locales
+    @pattern  = /^\/(#{@locales.map{|l| Regexp.escape(l.to_s)}.join('|')})(?=\/|$)/
   end
   
   def call env
@@ -12,9 +14,9 @@ class Localey
   end
   
   def filter_locale env
-    locale = env['PATH_INFO'].match(/^\/([\w-]+)\//)[1] rescue nil
+    locale = env['PATH_INFO'].match(@pattern)[1] rescue nil
     
-    if locale and I18n::Locale::Tag::Rfc4646.tag( locale )
+    if locale
       I18n.locale = locale
       env['PATH_INFO'].sub!(/^\/([\w-]+)\//, "/")
     end

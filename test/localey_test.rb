@@ -8,6 +8,7 @@ class LocaleyTest < Test::Unit::TestCase
     @app = Localey.new Object.new
     @env = {}
     I18n.locale = :en
+    I18n.available_locales = [:de, :en, :"en-US", :fr]
   end
   
   def test_filtering_a_basic_url_with_a_simple_locale
@@ -16,12 +17,23 @@ class LocaleyTest < Test::Unit::TestCase
     assert_equal :de, I18n.locale
   end
   
-  def test_filtering_a_basic_url_with_a_multipart_locale
+  def test_filtering_a_basic_url_with_an_extended_locale
     set_path_info_and_filter( "/en-US/foo/bar" )
     assert_equal "/foo/bar", @env['PATH_INFO']
     assert_equal :"en-US", I18n.locale
   end
   
+  def test_urls_without_locale
+    set_path_info_and_filter( "/foo/bar" )
+    assert_equal "/foo/bar", @env['PATH_INFO']
+    assert_equal :en, I18n.locale
+  end
+  
+  def test_root_url
+    set_path_info_and_filter( "/" )
+    assert_equal "/", @env['PATH_INFO']
+    assert_equal :en, I18n.locale
+  end
   
   def set_path_info_and_filter path
     @env['PATH_INFO'] = path
