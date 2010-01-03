@@ -3,8 +3,6 @@
 require 'localey'
 require 'localey/route_set'
 
-Three::Application.configure do
-  
+Rails.application.class.configure do
   config.middleware.use "Localey"
-  
 end
