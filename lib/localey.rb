@@ -1,7 +1,7 @@
 class Localey
   
   def initialize app
-    @app      = app
+    @app = app
   end
   
   def locales

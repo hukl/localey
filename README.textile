@@ -1,12 +1,18 @@
 h1. What is it for
 
-This plugin should enable your Rails 3 apps to encode the locale within the url like: http://example.com/*en*/posts/1 without the usual quirks. Your app and all helpers etc should behave normally.
+This plugin should enable your Rails 3 apps to encode the locale within the url
+like: http://example.com/*en*/posts/1 without the usual quirks. Your app and
+all helpers etc should behave normally.
 
-In earlier versions of rails you had to user things like svenfuchs/routing-filter plugin or pass :id or :locale parameters each time.
+In earlier versions of rails you had to user things like
+svenfuchs/routing-filter plugin or pass :id or :locale parameters each time.
 
-Since Rails 3 isn't released yet its entirely possible that this plugin is completely unnecessary and there are better ways to achieve this kind of url locale encoding. If you you know one - please let me know.
+Since Rails 3 isn't released yet its entirely possible that this plugin is 
+completely unnecessary and there are better ways to achieve this kind of url 
+locale encoding. If you you know one - please let me know.
 
-If you want to help out I could use help testing this plugin properly without the need of an entire test app.
+If you want to help out I could use help testing this plugin properly without 
+the need of an entire test app.
 
 h1. What does it do
 
