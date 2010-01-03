@@ -27,4 +27,5 @@ class LocaleyTest < Test::Unit::TestCase
     @env['PATH_INFO'] = path
     @app.filter_locale( @env )
   end
+
 end
