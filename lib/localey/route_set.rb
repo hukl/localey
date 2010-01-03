@@ -8,7 +8,12 @@ module ActionDispatch
         locale = options.delete(:locale)
         locale ||= I18n.locale
         result = generate_old( options, recall, method )
-        result.sub(/^\//, "/#{locale}/")
+        
+        if result.is_a?(String)
+          result.sub(/^\//, "/#{locale}/")
+        elsif result.is_a?(Array)
+          result.first.sub(/^\//, "/#{locale}/")
+        end
       end
     end
   end
