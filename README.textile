@@ -1,3 +1,8 @@
+h1. IT IS OBSOLETE
+
+Yeah it turns out rails 3.0 will provide the desired behaviour by default so there won't be any need for plugging it in. Therefor use this repo only for inspiration at most. There won't be any sense in following its development as I won't do anything here anymore. Thanks for looking though ;)
+
+
 h1. What is it for
 
 This plugin should enable your Rails 3 apps to encode the locale within the url
